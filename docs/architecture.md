@@ -17,7 +17,7 @@ grows, so the word was split:
 | Layer | Rate of change | Contents | Owner |
 |---|---|---|---|
 | **L0 seed** | never | principles, lifecycle, contracts, acceptance gate, precedence, version | the distributed artefact (read-only) |
-| **L1 capability** | low | the four core skills (names fixed) and derived skills the project generates | the project |
+| **L1 capability** | low | the three core skills (names fixed) and derived skills the project generates | the project |
 | **L2 state** | high | current position, work units, progress, decision history, verification contract, recovery procedure, improvements waiting to sediment | the project, owned by the state contract |
 | **L3 project understanding** | human-led | stack, structure, constraints -- AGENTS.md | humans; the agent proposes |
 
@@ -46,12 +46,12 @@ Fixed:
 
 - the seven lifecycle stages and their order
 - the invariant of each stage
-- the four core contracts: name, guarantees, prohibitions, the stages that reference
-  them, the description template, the body preamble
+- the three core contracts: name, guarantees, prohibitions, the stages that reference
+  them, and the skeleton each is formed from
 - the seven conditions of the acceptance gate
 - precedence: seed > core > derived
 - the layer boundary rules
-- its own version and migration policy
+- its own version, and that a version difference is resolved by reconstruction
 
 Not fixed:
 
@@ -80,24 +80,29 @@ seed's.
 
 ```
 owlseed/
-├── SKILL.md                 # description, the seven stages and invariants,
-│                            # precedence, pointers to the contracts
-└── references/
-    ├── lifecycle.md         # each stage in detail
-    ├── contracts/
-    │   ├── compass.md
-    │   ├── state.md
-    │   ├── verify.md
-    │   └── grow.md          # each: guarantees, prohibitions, stages, description template
-    ├── preamble.md          # body preamble templates for core and derived skills
-    ├── gate.md              # the seven conditions and how to judge them
-    ├── migration.md         # per-version mapping and reconstruction procedure
-    └── guidance.md          # recommendations with evidence, explicitly not norms
+├── SKILL.md          # description, the seven stages and their guards,
+│                     # precedence, pointers to the rest
+├── references/
+│   ├── grow.md       # the acceptance gate, formation, intake, pruning
+│   ├── germinate.md  # forming and reconstructing the core skills
+│   └── guidance.md   # recommendations with evidence, explicitly not norms
+└── assets/
+    ├── owlseed-compass.md
+    ├── owlseed-state.md
+    ├── owlseed-verify.md  # each: preamble, guarantees, prohibitions, placeholders
+    └── derived.md         # the skeleton a derived skill is copied from
 ```
 
-`SKILL.md` stays under 500 lines; detail goes to `references/`. `guidance.md` is
-where "things the seed does not fix but has evidence for" live, and it is kept
-clearly distinct from the norms.
+The seed is read at the start of every session, so what it costs to read is part
+of the specification rather than an implementation detail. `AGENTS.md` records the
+per-file budget and `scripts/validate.sh` warns on it. Two structural decisions
+follow from it: the stages are written once, in `SKILL.md`, rather than in both a
+summary and a detail file; and a file is split by when it is read, which is why
+germination -- read once per project -- is not in `grow.md`, which is read at every
+sediment.
+
+`guidance.md` is where "things the seed does not fix but has evidence for" live, and
+it is kept clearly distinct from the norms.
 
 **This is the normative artefact.** The documents in `docs/` explain it; they do not
 override it.

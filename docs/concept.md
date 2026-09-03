@@ -68,9 +68,17 @@ therefore **not built in the first place**.
 
 The same separation applies to means. owlseed defines what principles must be kept
 and what must be satisfied; it does not fix how the record of truth is stored, how
-state is recorded, where improvement history is kept, or **how capabilities are
-formed and managed**. Those must remain replaceable by something better, so they are
-separated out of the immutable part.
+state is recorded, where improvement history is kept, or where a capability lives.
+Those must remain replaceable by something better, so they are separated out of the
+immutable part.
+
+The proposal put **how capabilities are formed and managed** on that list too, and
+gave it to a core skill the project held. That did not survive: every rule it held
+turned out to be the same in every project, and the seed already held most of them
+as the acceptance gate and the layer boundaries. Formation is now the seed's own
+role. What stayed on the project's side is what actually varies -- where a formed
+capability is placed, what means it uses, and what the record of its formation looks
+like. See [contracts.md](contracts.md).
 
 ## Capabilities are not finished products
 

@@ -1,8 +1,7 @@
 # Lifecycle
 
-The normative text is `skills/owlseed/SKILL.md` and
-`skills/owlseed/references/lifecycle.md`. This document records what was decided and
-why.
+The normative text is `skills/owlseed/SKILL.md`. This document records what was
+decided and why.
 
 ## The unit is work, not a session
 
@@ -17,20 +16,20 @@ able to resume from orientation.
 
 Germination happens once. After that, orient through close runs once per work unit.
 
-| Stage | The question | Answered by | The invariant |
+| Stage | The question | Answered by | The guard |
 |---|---|---|---|
-| **Germinate** | Where are the purpose, the state, and the means of verification? | grow, generating compass / state / verify | Do not start work until all four core skills exist. If the purpose cannot be read, ask a human. |
+| **Germinate** | Where are the purpose, the state, and the means of verification? | the seed, from the skeletons in `assets/` | Do not start work until all three core skills exist. If the purpose cannot be read, ask a human. |
 | **Orient** | Where are we now? Is the foundation intact? | state, verify, compass | Do not start new work on a broken foundation. Queue the repair as a work unit first. |
 | **Select** | What is the next single unit? Does it serve the purpose? | state, compass | One unit at a time, sized to reach verification in one session. |
-| **Act** | Do we have the capability? If not, is it worth building? | derived skills, grow | Do not modify the seed. Do not silently change the purpose or the verification contract; a change is recorded as a decision. |
+| **Act** | Do we have the capability? If not, is it worth building? | derived skills, `grow.md` | Do not modify the seed. Do not silently change the purpose or the verification contract; a change is recorded as a decision. |
 | **Verify** | Can this be called verified? On what evidence? | verify | Never call something verified without evidence. On failure, return to act or split the unit. |
-| **Sediment** | Which layer does this experience belong to? | grow, into L1 / L2 / L3 | Changes to L1 pass the acceptance gate. L3 is applied as a proposal. Norms that duplicate the seed are deleted. |
+| **Sediment** | Which layer does this experience belong to? | `grow.md`, into L1 / L2 / L3 | Changes to L1 pass the acceptance gate. L3 is applied as a proposal. Norms that duplicate the seed are deleted. |
 | **Close** | Can the next session pick this up? | state | Never finish leaving unrecorded work in progress. |
 
 Among the findings the design cites as its grounds are four failure modes observed in
 Anthropic's long-running harness work: trying to do everything at once, declaring
 completion from looking at the progress file, leaving things in a broken state, and
-calling something done without verifying it. The invariants above address the same
+calling something done without verifying it. The guards above address the same
 four, though the design record does not map them one to one. See
 [foundations.md](foundations.md).
 
@@ -74,12 +73,27 @@ wording is that the judgement is not governed by a fixed condition list alone, b
 left to the agent looking at the situation, and the decision record preserved that
 delegation unchanged.
 
-The normative text compresses those four into two questions -- does it affect the
-result of the current work unit, and does deferring it cause rework
-(`skills/owlseed/references/lifecycle.md`). That compression is narrower than the
-handoff, and it is tracked as a known drift in `NOTES.md`.
+The normative text carries all four, as permission rather than as a test, and repeats
+the handoff's disposition that the list is not the sole control.
 
-## Two responsibilities that did not become skills
+## The stages are written as guards, not as steps
+
+The seven stages and their order are fixed, but the normative text expresses each one
+as an imperative plus the condition that must hold before moving on, rather than as a
+step in a sequence. The two carry the same information -- stage *n*'s exit condition is
+stage *n+1*'s entry condition -- and the guard form has one property the step form does
+not: it can be checked at any entry point. That is what orientation does after a
+session breaks mid-unit. It looks for how far the guards are true, rather than for which
+step number it had reached.
+
+Two norms follow from the same reasoning and are new in this expression. The current
+position is read from state rather than from the agent's memory of it, and complete,
+verified and closed are only what state records with evidence -- a claim made in
+conversation is not a judgement. Both are aimed at failure modes measured externally:
+agents that stop before work is verifiably complete, that duplicate work already done,
+and that claim completion falsely. See [foundations.md](foundations.md).
+
+## Two responsibilities that did not become skills, and one that stopped being one
 
 Rather than add a fifth core skill, two responsibilities were folded into existing
 contracts:
@@ -92,3 +106,7 @@ contracts:
 Thickening two contracts was judged better than standing up a fifth skill, on two
 grounds the record names: **name collision** -- which follows from publishing as open
 source -- and selection accuracy between similar descriptions.
+
+The same two grounds later removed a skill. `owlseed-grow` was a core skill in the
+proposal and the handoff; growth is now the seed's own role, in
+`references/grow.md`. See [contracts.md](contracts.md) for the test that decided it.

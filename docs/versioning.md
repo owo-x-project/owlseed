@@ -1,20 +1,52 @@
 # Versioning
 
-The normative text is `skills/owlseed/references/migration.md`. This document records
-what was decided and why.
+The normative text is the `metadata.version` field in `skills/owlseed/SKILL.md`, the
+version comparison in its orient stage, and
+`skills/owlseed/references/germinate.md`. This document records what was decided and
+why.
 
 ## Rules
 
-- owlseed carries a version.
+- owlseed carries a version, in `metadata.version`.
 - **Renaming, merging or splitting a contract happens only in a major version.**
-- The seed's `references/migration.md` holds the per-version mapping: old name to new
-  name, merges, splits.
-- On a version migration, the seed has the agent **reconstruct** the new core skills
-  from the existing ones. The reconstruction passes the acceptance gate.
+- On a version difference, the seed has the agent **reconstruct** the core skills from
+  the existing ones. The reconstruction passes the acceptance gate.
 - Old skills are not deleted until the new ones are confirmed to satisfy the
   contracts' guarantees; until then they are set aside.
-- Because reconstruction is an LLM operation and therefore non-deterministic,
-  renaming is kept rare. **Contract stability is preferred over a better name.**
+- Because reconstruction is an LLM operation and therefore non-deterministic, renaming
+  is kept rare. **Contract stability is preferred over a better name.**
+
+## What the version numbers mean
+
+This is the repository's concern rather than the agent's, so it is recorded here and
+not in the skill.
+
+- **major** -- renaming, merging or splitting a contract; adding or removing a
+  lifecycle stage; changing the acceptance gate's conditions or their count.
+- **minor** -- adding a guarantee to a contract; adding a file under `references/` or
+  `assets/`.
+- **patch** -- wording, and updates to `guidance.md`.
+
+## Why there is no migration document
+
+The seed once carried a `references/migration.md` holding a per-version mapping from
+old contract name to new, plus a migration procedure. It was removed, because the
+lifecycle already produces the behaviour it described.
+
+A rename, a merge or a split means a core skill by the new name does not exist. That is
+exactly the condition germination tests for, so the agent germinates, and germination
+reconstructs from whatever the project already has. The old core skills are
+identifiable as material because they carry the core preamble, which is what a mapping
+table would otherwise have been needed for. The contracts state what the new skills
+must guarantee, which is what drives a split correctly without an instruction naming
+the split.
+
+One case does not surface that way, and the skill handles it explicitly. A minor
+version that only adds a guarantee leaves every core skill present, so germination
+never fires and the added guarantee would never reach the project. So orientation
+compares the version state records against the seed's, and on a difference checks each
+core skill against its skeleton's guarantees and queues any guarantee it cannot answer.
+That one clause replaces the whole migration procedure.
 
 ## Why reconstruction rather than a rewrite
 
@@ -31,19 +63,3 @@ explicit that **the contract check and the set-aside protect against it but are 
 complete.** They are why the gate and the set-aside are mandatory rather than
 advisory, and why the design would rather live with an imperfect contract name than
 move one -- but they do not make a reconstruction correct.
-
-## Where the version is recorded
-
-The record settles that the seed carries a version; it does not settle where. Today
-the version is stated in the seed's body prose, and the frontmatter carries only
-`name` and `description`.
-
-Moving it to a machine-readable `metadata.version` is a repository decision that has
-not been applied yet; it is step 2 of the pending rename in `NOTES.md`. The
-specification permits it -- `metadata` is an arbitrary map of string keys to string
-values, and spec-compliant runtimes ignore keys they do not recognise -- so it would
-cost no portability.
-
-The version an agent recorded for owlseed is compared against the current one, and if
-they differ, `references/migration.md` governs. (The normative text places that
-comparison at orientation; the design record does not.)

@@ -28,20 +28,20 @@ for root in skills i18n/*; do
         awk -v rel="$skill/SKILL.md" -v expect="$name" -f scripts/skill.awk \
             "$skill/SKILL.md" || status=1
 
-        # policy: the seed ships Markdown only, no bundled scripts or assets
+        # policy: the seed ships Markdown only, no bundled scripts
         offenders=$(find "$skill" -type f ! -name '*.md')
         if [ -n "$offenders" ]; then
             echo "$offenders" | while IFS= read -r file; do
-                echo "ERROR   $file: owlseed ships Markdown only (no scripts or assets)"
+                echo "ERROR   $file: owlseed ships Markdown only (no scripts or binaries)"
             done
             status=1
         fi
 
-        # references must resolve, and stay shallow
+        # references and skeletons named in SKILL.md must resolve, and stay shallow
         refs=$(awk '{
             line = $0
-            while (match(line, /`references\/[A-Za-z0-9_.\/-]+\.md`/)) {
-                print substr(line, RSTART + 1, RLENGTH - 2)
+            while (match(line, /(references|assets)\/[A-Za-z0-9_.\/-]+\.md/)) {
+                print substr(line, RSTART, RLENGTH)
                 line = substr(line, RSTART + RLENGTH)
             }
         }' "$skill/SKILL.md" | sort -u)
@@ -62,6 +62,60 @@ if [ "$found" -eq 0 ]; then
     echo "ERROR   no skill with a SKILL.md was found under skills/"
     status=1
 fi
+
+echo
+echo "== skeletons"
+# A skeleton is copied into a project and becomes a skill there, so it has to be
+# a valid skill already. Its name is a placeholder the project replaces, so the
+# name-matches-directory rule is checked against its own frontmatter.
+for skill in skills/*; do
+    [ -d "$skill/assets" ] || continue
+    for asset in "$skill"/assets/*.md; do
+        [ -f "$asset" ] || continue
+        echo "$asset"
+        sname=$(awk '
+            /^---$/ { f++; next }
+            f == 1 && /^name:/ { sub(/^name:[ \t]*/, ""); gsub(/["]/, ""); print; exit }
+        ' "$asset")
+        if [ -z "$sname" ]; then
+            echo "ERROR   $asset: skeleton has no frontmatter name"
+            status=1
+        else
+            awk -v rel="$asset" -v expect="$sname" -f scripts/skill.awk "$asset" \
+                >/dev/null || {
+                awk -v rel="$asset" -v expect="$sname" -f scripts/skill.awk "$asset"
+                status=1
+            }
+        fi
+        if grep -q '```' "$asset"; then
+            echo "ERROR   $asset: skeletons carry no code fences"
+            status=1
+        fi
+        if ! grep -q '<[^>]*>' "$asset"; then
+            echo "ERROR   $asset: skeleton has no <placeholder> for the project to fill"
+            status=1
+        fi
+    done
+done
+
+echo
+echo "== context budget"
+# The budget applies to the committed English text; drafts are reported only.
+for skill in skills/*; do
+    [ -f "$skill/SKILL.md" ] || continue
+    echo "$skill/SKILL.md"
+    awk -v rel="$skill/SKILL.md" -v limit=600 -f scripts/budget.awk "$skill/SKILL.md"
+    for ref in "$skill"/references/*.md; do
+        [ -f "$ref" ] || continue
+        echo "$ref"
+        awk -v rel="$ref" -v limit=400 -f scripts/budget.awk "$ref"
+    done
+    for asset in "$skill"/assets/*.md; do
+        [ -f "$asset" ] || continue
+        echo "$asset"
+        awk -v rel="$asset" -v limit=250 -f scripts/budget.awk "$asset"
+    done
+done
 
 echo
 echo "== plugin manifests"

@@ -1,6 +1,6 @@
 # Acceptance gate
 
-The normative text is `skills/owlseed/references/gate.md`. This document records what
+The normative text is `skills/owlseed/references/grow.md`. This document records what
 was decided and why.
 
 ## Why there is a gate at all
@@ -62,3 +62,36 @@ substantially harder on a core skill, which has a contract to keep satisfying.
 Condition 2 is the one tied to the finding that selection accuracy drops as similar
 descriptions accumulate; condition 4 is what keeps a skill from encoding one
 incident.
+
+### Condition 3 is not satisfied by the verification that built the capability
+
+This is the one judging rule added after the design record was written, and it comes
+from a measurement rather than from an argument. Of 222 tools that self-evolving agents
+synthesised and kept, **96.8% scored zero correctness on held-out conformance suites**
+while executing cleanly and passing every in-session verifier call. Structural validity
+was masking functional incorrectness. See [foundations.md](foundations.md).
+
+Condition 3 as the design record words it -- the verifications verify has already
+recorded still pass -- is precisely the check that measurement found near-worthless for
+a newly formed capability, because those verifications were written against the inputs
+the capability was built on. So the normative text requires the check to use inputs not
+seen while building: derived from the contract, or from the capability's own definition.
+
+The same rule is what makes a bundled script's tests load-bearing rather than hygienic.
+Conditions 2, 3 and 4 apply to a script the same way they apply to prose, and its tests
+have to include inputs that were not used while writing it. Pruning re-runs the
+recorded verifications for the same reason: a capability whose recorded verifications
+start failing while results still look fine is the measured signature of one that has
+quietly broken.
+
+Note what this does not change. The conditions are still seven, and the count is fixed
+in [architecture.md](architecture.md); changing it would be a major version. This is a
+rule about how condition 3 is judged, which is what this section is for.
+
+### Condition 6 no longer has a recursion to guard
+
+The design record noted condition 6 as most easily broken when `owlseed-grow` revised
+itself. Growth is now the seed's own role rather than a skill the project holds and
+improves, so that case does not arise. Condition 6 still applies to every change: a
+derived skill may not contradict the seed's norms, and nothing beneath the seed may
+modify it.

@@ -20,7 +20,8 @@ That leaves the description carrying the whole load, so it is designed for it:
 - **trigger words first.** The end of a description can be truncated; the limit is
   1024 characters.
 - **enumerate the situations that occur at the start of a session** -- starting work,
-  receiving a task, resuming, checking progress, reviewing.
+  receiving a task, resuming, checking progress, and making or fixing a skill.
+  "Reviewing" was in this list and has been dropped; see below.
 - **bound the scope** -- an already-germinated project, or the start of continuous
   development.
 - **make it redundant through back-references from the core skills.** Every core
@@ -65,9 +66,13 @@ Two results are design-level rather than incidental:
 
 - **A runtime's bundled skill can win outright.** A review prompt went to Claude
   Code's own bundled review skill instead of owlseed, in 3 of 3 repeats. The record
-  lists "review" among the situation words the description deliberately enumerates,
-  so the two are in direct conflict. Whether to yield that trigger word, to
-  differentiate the description, or to accept the collision is open.
+  listed "review" among the situation words the description deliberately enumerated, so
+  the two were in direct conflict. **The word has been yielded.** owlseed keeps
+  starting work, receiving a task, resuming and checking progress, and no longer
+  claims review; the skill-routing literature says overlapping descriptions degrade
+  discrimination, so conceding a word a bundled skill owns costs less than competing
+  for it. A review request reaches the bundled skill, and the work that follows it
+  still enters through owlseed.
 - **Activation tracks the description's language.** With a Japanese description,
   Japanese cases expecting activation passed 4 of 7 and English cases 1 of 5. All 6
   cases expecting *no* activation passed. This is a first measured argument for
@@ -78,3 +83,15 @@ The harness that produced these numbers is not kept in the repository -- driving
 CLIs over a prompt set costs about a dollar per pass, which this project does not spend
 routinely -- so they are a single observation, not a baseline being tracked. They are
 carried, with whatever has been seen since, under Open findings in `NOTES.md`.
+
+## What the description had to absorb later
+
+Folding growth into the seed removed `owlseed-grow`, whose description carried the
+trigger words for turning a procedure into a skill, fixing a skill, and using an
+external one. Nothing else in the harness matches those prompts -- compass, state and
+verify do not -- so owlseed's own description now enumerates them.
+
+That makes the description carry two jobs at once: reaching owlseed at the start of a
+session, and reaching it mid-session when someone asks for a skill to be made or fixed.
+It is a thing to observe rather than to argue about, on the same grounds as the rest of
+this document.
