@@ -1,0 +1,18 @@
+{
+  "name": "owlseed",
+  "description": "owlseed - an immutable seed skill that gives AI agents a lifecycle, contracts and an acceptance gate for continuous work on a project.",
+  "owner": {
+    "name": "owlseed maintainers"
+  },
+  "plugins": [
+    {
+      "name": "owlseed",
+      "source": "./",
+      "description": "Immutable behavioural principles and a seven-stage work lifecycle (germinate, orient, select, act, verify, sediment, close) that an agent grows project-specific core and derived skills from.",
+      "version": "0.1.0",
+      "license": "Apache-2.0",
+      "keywords": ["harness", "lifecycle", "self-improvement", "agent-skills", "workflow"],
+      "category": "workflow"
+    }
+  ]
+}

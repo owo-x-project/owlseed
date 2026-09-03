@@ -1,0 +1,16 @@
+Documentation license
+=====================
+
+The Markdown documents in this repository -- everything under `docs/` and `skills/`,
+and the README files -- are licensed under the Creative Commons Attribution 4.0
+International License.
+
+    SPDX-License-Identifier: CC-BY-4.0
+    Full text: https://creativecommons.org/licenses/by/4.0/legalcode
+
+Code in this repository -- everything under `scripts/`, `.github/` and the JSON
+manifests under `.claude-plugin/` -- is licensed under the Apache License 2.0.
+See LICENSE.
+
+This split follows the agentskills/agentskills repository, so that skill text can
+be adapted and redistributed with attribution while the tooling stays permissive.
