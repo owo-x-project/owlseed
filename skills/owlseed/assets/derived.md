@@ -1,16 +1,10 @@
 ---
 name: replace-with-skill-name
-description: このSkillが答えるタスクの状況語を先頭に置く。何をする時に使うかを具体的に書く。owlseed配下。
+description: Start with the situation this skill is for. Say clearly what it does and when to use it. Under owlseed.
 ---
 
-> このSkillは owlseed 配下の派生Skillである。owlseed-compass の範囲と owlseed-verify の検証契約に従う。
-> コアSkillと矛盾する場合はコアに従い、矛盾を owlseed-state に記録する。
-> 形成の根拠: <作業単位の参照>（受入ゲート通過: <日付または参照>）
+> This is a derived skill under owlseed. It follows the scope in owlseed-compass and the way of checking in owlseed-verify. If it disagrees with a core skill, follow the core skill and record it in owlseed-state.
 
-外部Skillを取り込んだアダプタの場合は、前文に次の1行を加える。
+## <Name of the procedure>
 
-> 本体: <外部Skillの名前と所在>。この派生Skillは、このプロジェクトでの使い方と制約だけを持つ。
-
-## <手順の名前>
-
-<手順。パス・値・固有名を伏せても成立する形で書く>
+<The procedure. Write it so that it still holds with paths, values and names hidden>

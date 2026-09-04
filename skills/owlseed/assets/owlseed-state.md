@@ -1,41 +1,33 @@
 ---
 name: owlseed-state
-description: このプロジェクトの現在の作業状態・作業単位の一覧・決定履歴・復旧手順を保持する。作業を再開する時、進捗を確認する時、次に何をすべきか迷う時、前回どこまで進んだか知りたい時、壊れた状態から戻す時に使う。owlseed配下。
+description: Holds this project's current work position, the list of work units, the record of decisions, and how to recover. Use it when you continue work, check progress, wonder what to do next, want to know how far the last session got, or need to get back from a broken state. Under owlseed.
 ---
 
-> このSkillは owlseed のライフサイクル内でのみ機能する。owlseed を読んでいなければ先に読む。
-> owlseed と矛盾する場合は owlseed に従い、矛盾をここに記録する。
-> 契約の正本は owlseed 側の骨組み owlseed-state の保証節である。
+> This is a core skill under owlseed. If you have not read owlseed, read it first. If this skill and owlseed disagree, follow owlseed and record it here.
+> The headings are the contract, set by the template owlseed-state in owlseed. Do not change them. The first lines under each heading say what owlseed asks there; keep them. owlseed reads this skill at every stage.
 
-## 答えられなければならないこと（owlseed の骨組みから逐語。編集しない）
+## Where the records are and in what form
 
-- 現在位置を短く答えられる。段階ごとに読まれるため、要約は一覧と分けて小さく保つ
-- 進行中・待ち・終わった作業単位と、それぞれの状態と根拠への参照
-- 作業単位は決まった項目の集合として持ち、進行は項目の追加や削除ではなく値の更新で表す
-- 決定履歴。目的・範囲・検証契約の変更、受入ゲートの判定理由、上位下位の矛盾
-- 沈殿待ちの改善
-- 復帰可能な状態の定義と、壊れた時の戻し方
-- 状態の所在と形式を所有し、他のSkillに答える
-- 記録している owlseed の版
+owlseed asks here at every stage: where do I read the current position, and where do I write? Keep the summary of the current position small and apart from the lists, because it is read at every stage.
+<Where and in what form. Advice: keep the lists in a form the AI does not rewrite easily, for example JSON with fixed fields>
 
-禁止: 未記録の作業途中を残したまま収束する。作業単位の一覧から項目を削除・改変して履歴を失わせる。
+## Fields of each record
 
-## 状態の所在と形式
+The records owlseed writes here, and the fields each needs at least.
+A work unit: what it is, where it came from, its status (waiting, in progress, checked, sent back or closed), each change of status with when and why, progress so far, and a pointer to its proof.
+An improvement item: what you saw, in which unit, where it belongs (a derived skill, a heading of a core skill, or AGENTS.md), and how many times so far.
+A decision: what changed in purpose, scope or way of checking, why, and in which unit.
+A gate record: the change, its proof, and a reason for each of the seven conditions.
+A conflict or open question: what disagreed or what you could not decide, and in which unit.
+Status is the one field that moves. Everything else in an entry is added to, never erased. Never remove an entry.
+<The fields as you keep them, with the names you use>
 
-<形式は自由。references/guidance.md に根拠のある推奨がある>
+## Safe state and how to get back
 
-## 作業単位の一覧
+owlseed asks here at Orient and when something breaks: is this a safe point, and how do I get back to one? Gate condition 7 uses this.
+<What a safe point is, for example everything is recorded, a commit exists and the basic check passes. How to get back, for example by returning to the last commit>
 
-<項目の集合を決めて書く>
+## owlseed version
 
-## 決定履歴
-
-<>
-
-## 復帰可能な状態の定義と復旧手順
-
-<例: すべて記録済み、区切りが残っている、基本確認が通る>
-
-## owlseed の版
-
-<導入時の版>
+owlseed compares this with its own version at Orient.
+<The version at the time of setup>

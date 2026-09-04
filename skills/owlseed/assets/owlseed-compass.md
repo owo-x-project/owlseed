@@ -1,35 +1,34 @@
 ---
 name: owlseed-compass
-description: このプロジェクトの目的・範囲・完了定義と、人間に確認すべき判断の境界を保持する。作業の妥当性を判断する時、依頼が範囲内か迷う時、完了かどうか判断する時、破壊的な操作や目的の解釈が必要な時に使う。owlseed配下。
+description: Holds this project's purpose, scope, kinds of work, definition of done, and which decisions go to a human. Use it to judge whether work fits, what kind of work it is and how it goes, whether something is done, or when a destructive action or a reading of the purpose is needed. Under owlseed.
 ---
 
-> このSkillは owlseed のライフサイクル内でのみ機能する。owlseed を読んでいなければ先に読む。
-> owlseed と矛盾する場合は owlseed に従い、矛盾を owlseed-state に記録する。
-> 契約の正本は owlseed 側の骨組み owlseed-compass の保証節である。
+> This is a core skill under owlseed. If you have not read owlseed, read it first. If this skill and owlseed disagree, follow owlseed and record it in owlseed-state.
+> The headings are the contract, set by the template owlseed-compass in owlseed. Do not change them. The first lines under each heading say what owlseed asks there; keep them. owlseed reads this skill at Select, Act and Verify.
 
-## 答えられなければならないこと（owlseed の骨組みから逐語。編集しない）
+## Purpose
 
-- 与えられた作業単位が、プロジェクトの目的・範囲に沿っているか
-- 作業単位ごとに何をもって完了とするか。完了条件は自分の判断の外から検査できる形であること
-- どの判断を人間に返すか。範囲の変更、破壊的操作、目的の解釈、外部への影響を含む
-- 目的・範囲が変わった時、それを決定として owlseed-state に記録させる
+owlseed asks here: what is this project for? One sentence. Any change is a decision recorded in owlseed-state.
+<The purpose. If you cannot read it, ask a human>
 
-禁止: 目的・範囲の変更を決定として記録せずに行う。判断権限の境界を超える判断を自律で行う。
+## Scope
 
-## 目的
+owlseed asks here at Select: does this unit fit the project? Write In and Out so that this can be answered without asking a human. Any change is a decision.
+In: <>
+Out: <>
 
-<一文で言える目的。読み取れなければ人間に確認する>
+## Kinds of work unit
 
-## 範囲
+owlseed asks here at Select: what kind is this unit, and which skills does it go through? Name each kind. For each, name the derived skills used at Act and at Verify, and say if it needs a human. A line for every kind is allowed. Definition of done and the ways to check in owlseed-verify use the same kind names.
+<The kinds, one line each. The skills may be none yet>
 
-含む: <>
-含まない: <>
+## Definition of done
 
-## 完了定義
+owlseed asks here at Select and Verify: what must be true for a unit of this kind to be done? Say what must be true, not how you check it; owlseed-verify says how. Write it so that someone other than you can check it.
+<The definition, by kind of work unit>
 
-<作業単位の種類ごとに分けてよい。外部から検査できる形で書く>
+## Who decides
 
-## 判断権限の境界
-
-人間に返す: <最初は保守的に多めにする。緩める変更は受入ゲートを通す>
-自律で決めてよい: <>
+owlseed asks here at Select and Act: must a human decide this? Start with a long list for the human. Shortening it passes the gate, and it gets shorter as the agent's checks show they can be trusted.
+A human decides: <Include changes of scope, destructive actions, readings of the purpose, and effects outside the project>
+The agent decides: <>

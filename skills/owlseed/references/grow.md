@@ -1,33 +1,38 @@
-# 成長
+# Grow
 
-Skillの形成・改訂・統合・廃止・再構成・外部Skillの取り込みに適用する。コアSkillと派生Skillで条件は同じ。人間の承認が必要かどうかは `owlseed-compass` の判断権限の境界が決める。
+Read this at every Sediment, and before you form a skill or take one in. Every change it leads to passes references/gate.md.
 
-## 受入ゲートの7条件
+## What grows, and from what
 
-1. 根拠がある。どの作業単位の結果から生じた変更か記録できる。推測だけで変えない。
-2. 反復性か保持価値。2回以上現れた、または独立した能力として保持する価値がある。一度しか使わない手順も知識も切り出さない。外部Skillの取り込みは保持価値ありと判定してよい。
-3. 保証を壊さない。コアSkillなら骨組みの保証節を満たし続ける。派生Skillなら `owlseed-verify` が記録している検証が変更後も通る。
-4. 過剰適応でない。契機となった値・パス・固有名を伏せても記述が成立する。成立しなければ手順ではなく事例であり、決定履歴に置く。
-5. 層が正しい。状態と履歴は `owlseed-state` へ。構造・スタック・制約の説明は AGENTS.md へ。Skillには手順だけを残す。AGENTS.md に owlseed と重複する規範が混入していれば削除候補に挙げ、プロジェクト固有の規範だけを残す。
-6. owlseedを侵害しない。owlseedと矛盾せず、owlseed自体を変更していない。
-7. 可逆。変更前へ戻せる状態で行う。`owlseed-state` の復旧手順に接続する。
+The harness grows from the records in owlseed-state, never from memory. Write them while you work, in the fields owlseed-state defines; without them Sediment has nothing to grow from.
+A procedure that repeated across units becomes a derived skill.
+A skill formed or taken in is named in the Kinds of owlseed-compass, or it will not be called.
+A decision about purpose or scope grows owlseed-compass: Scope gains an In or an Out, and Definition of done gets sharper by kind of unit.
+A check that failed, or a check that was missing, grows owlseed-verify: "not defined" becomes a way to check, and a way to check gets stronger.
+A check that kept passing where a human had to decide can shorten the human's list in owlseed-compass.
+A conflict between skills is material for improving the lower skill.
+A skill taken in from outside grows by being taken apart, one piece of proof at a time: what it says about done goes to owlseed-compass, what it says about checking goes to owlseed-verify, and the body shrinks to the procedure.
+An idea from outside is material too: another skill, a new tool, or a practice people now follow. Record it as an improvement item. Look outside when an improvement item repeats without a fix, when a check keeps failing for the same reason, or when a human points to a skill or tool. Looking outside is its own work unit.
+Understanding of the project, such as structure or constraints, goes to AGENTS.md as a proposal.
+An improvement item grows when it repeats. At Sediment, take the items that have come up twice or more; leave the rest and raise their count when you see them again. An item that needs its own work becomes a work unit, if owlseed-compass lets the agent decide that; otherwise it waits for a human. A done item is marked done, not removed.
+A grown harness has a short human's list, strong checks, and few skills that are each used often.
 
-条件3は、その能力を作る時に使った検証だけでは満たされない。契約または能力の定義から導いた、作成時に見ていない入力で確認する。同梱スクリプトには条件2・3・4を同じく適用し、テストには作成時に使わなかった入力を含める。
+## Forming a derived skill
 
-判定は、変更内容と根拠を書き出し、条件1から7を一つずつ確認して理由を書く。実行可能な検証があればその結果を根拠にし、無ければ判定理由を明記する。いずれも `owlseed-state` の決定履歴に残す。
+Copy assets/derived.md. Fill in the name and the description. Start the description with the situation the skill is for, because the description is the only clue for choosing and its end may be cut off. End it with "Under owlseed." Show the relation to owlseed in the note at the top, not in the description. Keep the body short; as advice, not a rule, owlseed keeps SKILL.md under 600 words and each reference under 400. Make sure no angle brackets remain.
 
-## 派生Skillの形成
+## Taking in an outside skill
 
-`assets/derived.md` を複写し、名前とdescriptionを埋める。descriptionは状況語を先頭に置き、末尾に `owlseed配下。` を付ける。従属関係はdescriptionに書かず前文で表す。
+Take in an outside skill when a human chooses it, or when you have used it more than once. A human's choice is a decision; record it, and it is the proof for the gate.
+Copy its body under the note of assets/derived.md without changing its words. Changing words at intake is a change without proof. Write the description in the owlseed form. Its place in the work is set by the Kinds in owlseed-compass, not by its own trigger words.
+Where the copy disagrees with a core skill, the core skill wins and the disagreement is recorded. Do not edit the copy to fix it in advance; later changes come from what Sediment records, and pass the gate.
+A tool that cannot be copied, such as a server or a command, is taken in by pointing: write its name, its place, how to use it here, and its limits.
+The body holds only what is needed to run the skill.
 
-## 外部Skillの取り込み
+## Scripts in a skill
 
-薄いアダプタから始めてよい。前文、このプロジェクトでの使い方、制約だけを持ち、本体は外部を参照する。
+Consider a script for a mechanical step that repeats; its content costs no context, only its output does. Do not script what must be rewritten for every job. A script has tests, and they serve as proof for gate condition 3. Follow the project's language rules; with none, POSIX sh and awk travel best. Write one line in the skill saying what the script does, so a runtime that cannot run it can follow by hand.
 
-## 剪定
+## Cleaning up
 
-沈殿のたびに、使われていないSkillと重複するSkillを候補に挙げる。統合・廃止も同じ7条件を通し、廃止の条件3は「その能力が別のSkillで引き続き満たされる」と読む。あわせて記録済みの検証を再実行する。成果は出ているのに記録済みの検証が落ち始めていれば、その能力は壊れている。
-
-## 発芽と再構成
-
-コアSkillが揃っていない時は `references/germinate.md` に従う。
+At every Sediment, add unused skills and skills that overlap to the improvement list. Combining and removing pass the gate. For removing, read condition 3 as "another skill still provides this ability". Re-run the recorded checks for the skills you touched and for the skills you may remove; re-running all of them is its own work unit. If results still look fine but recorded checks start to fail, the ability is broken.

@@ -1,34 +1,27 @@
 ---
 name: owlseed-verify
-description: このプロジェクトで検証済みと言える条件と手段を保持する。成果が完成したか判断する時、テストや確認の方法を知りたい時、土台が壊れていないか確かめる時、変更が以前の動作を壊していないか確認する時に使う。owlseed配下。
+description: Holds what counts as checked in this project and how to check it. Use it to judge whether a result is done, to find how to test or confirm, to see that the base still works, or to make sure a change broke nothing that worked before. Under owlseed.
 ---
 
-> このSkillは owlseed のライフサイクル内でのみ機能する。owlseed を読んでいなければ先に読む。
-> owlseed と矛盾する場合は owlseed に従い、矛盾を owlseed-state に記録する。
-> 契約の正本は owlseed 側の骨組み owlseed-verify の保証節である。
+> This is a core skill under owlseed. If you have not read owlseed, read it first. If this skill and owlseed disagree, follow owlseed and record it in owlseed-state.
+> The headings are the contract, set by the template owlseed-verify in owlseed. Do not change them. The first lines under each heading say what owlseed asks there; keep them. owlseed reads this skill at Orient, at Verify, and whenever a skill changes.
 
-## 答えられなければならないこと（owlseed の骨組みから逐語。編集しない）
+## Ways to check
 
-- ある作業単位が検証済みか、何を根拠に言えるか
-- 検証手段が定義されていなければ、作業より先に手段を確定させる
-- 定位で使う基本確認を持つ、または未定義と明記する
-- 過去に通った検証の記録を保持し、受入ゲートの条件3に提供する
-- 生成と評価を分ける方法を提示する
+owlseed asks here at Verify: how do I check a result of this kind, and what proof does it leave? owlseed-compass says what done means; this says how to check it. Recording the proof matters more than how strong the check is. Any loosening is a decision recorded in owlseed-state.
+<The ways, by kind of work unit. If there is none yet, write "not defined" and settle it before the first work unit>
 
-禁止: 根拠なしに検証済みとする。検証手段を、決定として記録せずに緩める。
+## Basic check
 
-## 検証手段
+owlseed runs this at every Orient: a short way to see that the base still works.
+<The check. Advice: start the thing and do one action, so it takes minutes. If there is none, write "not defined">
 
-<作業単位の種類ごとに分けてよい。手段の強さより、根拠が記録されることが重要>
+## Where check results are kept
 
-## 基本確認
+owlseed-state points here as proof. Gate condition 3 reads the recorded checks of a derived skill from here.
+<Where, and in what form>
 
-<土台の健全性を短時間で確かめる手順。無ければ「未定義」と書く>
+## How to separate making from judging
 
-## 検証結果の記録先
-
-<owlseed-state から根拠として参照される>
-
-## 生成と評価を分ける方法
-
-<別セッション、サブエージェント、要件の再読など>
+owlseed asks here at Verify: how do I judge a result in a different context from the one that made it? Judging in the same context is too kind.
+<For example: another session, a subagent, or reading the requirements again>
