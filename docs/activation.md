@@ -56,8 +56,8 @@ between runs, so a single observation is not a verdict.
 
 That is why activation is a thing to observe rather than to argue about, and to keep
 observing rather than to establish once. Observing it means running a real agent:
-there is no way to test it offline, and no cheap way to test it in bulk. `NOTES.md`
-describes how to watch for it during ordinary work.
+there is no way to test it offline, and no cheap way to test it in bulk. Watch for it
+during ordinary work: a session that starts work without reading owlseed is the signal.
 
 ## What the measurement has shown so far
 
@@ -81,8 +81,7 @@ Two results are design-level rather than incidental:
 
 The harness that produced these numbers is not kept in the repository -- driving the
 CLIs over a prompt set costs about a dollar per pass, which this project does not spend
-routinely -- so they are a single observation, not a baseline being tracked. They are
-carried, with whatever has been seen since, under Open findings in `NOTES.md`.
+routinely -- so they are a single observation, not a baseline being tracked.
 
 ## What the description had to absorb later
 

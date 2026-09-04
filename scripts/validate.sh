@@ -104,16 +104,16 @@ echo "== context budget"
 for skill in skills/*; do
     [ -f "$skill/SKILL.md" ] || continue
     echo "$skill/SKILL.md"
-    awk -v rel="$skill/SKILL.md" -v limit=600 -f scripts/budget.awk "$skill/SKILL.md"
+    awk -v rel="$skill/SKILL.md" -v limit=1100 -f scripts/budget.awk "$skill/SKILL.md"
     for ref in "$skill"/references/*.md; do
         [ -f "$ref" ] || continue
         echo "$ref"
-        awk -v rel="$ref" -v limit=400 -f scripts/budget.awk "$ref"
+        awk -v rel="$ref" -v limit=500 -f scripts/budget.awk "$ref"
     done
     for asset in "$skill"/assets/*.md; do
         [ -f "$asset" ] || continue
         echo "$asset"
-        awk -v rel="$asset" -v limit=250 -f scripts/budget.awk "$asset"
+        awk -v rel="$asset" -v limit=450 -f scripts/budget.awk "$asset"
     done
 done
 

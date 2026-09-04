@@ -36,7 +36,7 @@ Four failure modes were observed:
 
 Source: Anthropic Engineering, *Effective harnesses for long-running agents*.
 
-The JSON finding is why `references/guidance.md` recommends holding the work-unit list
+The JSON finding is why the template of `owlseed-state` advises, inside its placeholder, holding the work-unit list
 in a format the model is less inclined to rewrite on its own -- as a recommendation,
 not a norm, because the format is the project's to choose.
 
@@ -157,7 +157,7 @@ owns the record, and they are why the normative text requires the current positi
 be read from state rather than from the agent's memory, requires state to be updated at
 a stage's exit, and refuses to treat a completion claimed in conversation as a
 judgement. The fixed-field shape is a means, so it is a recommendation in
-`guidance.md` rather than a norm.
+the placeholder of the state template, not a norm.
 
 ## Model-generated skills
 

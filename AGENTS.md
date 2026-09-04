@@ -54,24 +54,24 @@ untranslated drafts.
 | What | Budget | Why that number |
 |---|---|---|
 | `description` | 70 words (~100 tokens) | Loaded every turn. Anthropic's own skills sit at 55-235 tokens, median ~80. |
-| `SKILL.md` body | 600 words (~840 tokens) | Loaded whenever owlseed activates, which is every session. |
-| each `references/*.md` | 400 words (~560 tokens) | Read on demand; one per stage at most. |
-| each `assets/*.md` | 250 words (~350 tokens) | Read once per project, and becomes the project's own file. |
+| `SKILL.md` body | 1,100 words (~1,540 tokens) | Loaded every session. The floor is the protocol itself: seven guarded stages plus resume, repair and open-question rules, written in simple English so that no line can be read two ways. Drafts at 600 dropped rules and could not resume; drafts in dense English were misread. |
+| each `references/*.md` | 500 words (~700 tokens) | Read on demand, only when a skill is made, changed or removed; one per stage at most. |
+| each `assets/*.md` | 450 words (~630 tokens) | Copied once per project and becomes the project's own file; the fixed "owlseed asks here" lines are the contract and stay after filling. |
 
 A work unit that changes no skill must cost no more than the description plus
-`SKILL.md` -- about 1,000 tokens. Germination is the only scenario allowed past that,
-because its cost is the guarantee sections, and cutting those would cut the checklist
+`SKILL.md` -- about 1,650 tokens. Germination is the only scenario allowed past that,
+because its cost is the templates, and cutting their fixed lines would cut the checklist
 that version comparison and acceptance-gate condition 3 depend on.
 
 Budgets for the project's own skills (a core skill around 1,000 tokens, a derived skill
 under it) are recommendations, not norms: they depend on current model behaviour, so
-they live in `references/guidance.md`, which is explicitly non-normative.
+they live in the placeholders of the templates and in `references/grow.md`, marked as advice.
 
 **The skill text carries norms, not explanations.** A sentence stays only if deleting it
 would change what the agent does. Reasons, background and rationale belong in `docs/`.
 No H1 headings. No tables and no ASCII diagrams -- they spend tokens on visual
-arrangement an agent does not read visually. Bold is reserved for the lifecycle guards.
-Each stage is one imperative plus one guard.
+arrangement an agent does not read visually. No bold.
+Each stage is a few imperatives, one per line, and ends with one "Go on when" guard.
 
 **A skeleton in `assets/` must be a valid skill the moment it is copied.** Markdown
 only, no scripts. No angle brackets in frontmatter -- the specification forbids them and
@@ -79,7 +79,7 @@ only, no scripts. No angle brackets in frontmatter -- the specification forbids 
 removes the instruction inside it. No project paths, no means, no code fences. Keep
 skeletons as flat files and never as `assets/<name>/SKILL.md`: a runtime that scans for
 `SKILL.md` would register the skeleton as a real skill and charge every project its
-description tax. The guarantees section in the seed's skeleton is the source of record
+description tax. The headings and the fixed "owlseed asks here" lines in the seed's skeleton are the source of record
 for a contract; a project's copy of it is not, because a copy is mutable and a standard
 that a change can rewrite is no standard.
 

@@ -12,7 +12,7 @@ why.
 - On a version difference, the seed has the agent **reconstruct** the core skills from
   the existing ones. The reconstruction passes the acceptance gate.
 - Old skills are not deleted until the new ones are confirmed to satisfy the
-  contracts' guarantees; until then they are set aside.
+  contracts' headings and fixed lines; until then they are set aside.
 - Because reconstruction is an LLM operation and therefore non-deterministic, renaming
   is kept rare. **Contract stability is preferred over a better name.**
 
@@ -23,9 +23,9 @@ not in the skill.
 
 - **major** -- renaming, merging or splitting a contract; adding or removing a
   lifecycle stage; changing the acceptance gate's conditions or their count.
-- **minor** -- adding a guarantee to a contract; adding a file under `references/` or
+- **minor** -- adding a heading or a fixed line to a template; adding a file under `references/` or
   `assets/`.
-- **patch** -- wording, and updates to `guidance.md`.
+- **patch** -- wording, and changes to the advice inside placeholders.
 
 ## Why there is no migration document
 
@@ -38,14 +38,14 @@ exactly the condition germination tests for, so the agent germinates, and germin
 reconstructs from whatever the project already has. The old core skills are
 identifiable as material because they carry the core preamble, which is what a mapping
 table would otherwise have been needed for. The contracts state what the new skills
-must guarantee, which is what drives a split correctly without an instruction naming
+must answer, which is what drives a split correctly without an instruction naming
 the split.
 
 One case does not surface that way, and the skill handles it explicitly. A minor
-version that only adds a guarantee leaves every core skill present, so germination
-never fires and the added guarantee would never reach the project. So orientation
+version that only adds a heading or a fixed line leaves every core skill present, so germination
+never fires and the addition would never reach the project. So orientation
 compares the version state records against the seed's, and on a difference checks each
-core skill against its skeleton's guarantees and queues any guarantee it cannot answer.
+core skill's headings and fixed lines against its template and queues every missing one as an improvement item.
 That one clause replaces the whole migration procedure.
 
 ## Why reconstruction rather than a rewrite
@@ -54,7 +54,7 @@ The seed cannot rewrite a project's core skills, because it has never seen their
 contents -- they are the project's answers, not the seed's. A migration therefore
 cannot be a text transformation. It has to be: here is the new contract, here is the
 old skill, produce a skill that satisfies the new contract, then confirm the
-guarantees still hold.
+headings and fixed lines are all there.
 
 ## The residual risk
 
