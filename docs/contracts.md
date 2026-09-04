@@ -74,7 +74,7 @@ advice read once, at the moment it is used, costs nothing afterwards.
 through the gate. If condition 3 checked a core skill against the fixed lines inside that
 same skill, a change that weakened them would pass against its own weakened lines --
 and a standard a change can rewrite is not a standard, which is why L0 was separated in
-the first place. So condition 3 and orient's version comparison read the seed's template,
+the first place. So condition 3 and germination read the seed's template,
 never the project's copy. The copy's fixed lines are kept verbatim so that weakening them
 shows up as a difference from the seed.
 
@@ -99,6 +99,14 @@ Answers, when owlseed asks at select, act and verify:
 
 Any change of purpose or scope is recorded as a decision.
 
+The human's list starts long by design, and the template's minimum now includes any
+change to a core skill. A trial showed why: an agent added a kind of work to compass and a
+way to check to verify, correctly by the letter of the lifecycle, without asking the human
+who was present, because neither was on the list. Compass and verify define what done and
+checked mean, so leaving their edits to the agent alone is the one place the harness can
+grade itself. In autonomous operation the rule costs nothing: the change waits as an
+improvement item until a human is there, and the unit still closes.
+
 "Kinds of work unit" is the heading that routes work to skills. The seed does not know
 derived skills; it reads the kind of the current unit here and follows the skills named
 for it. Definition of done here and the ways to check in verify use the same kind names,
@@ -117,8 +125,8 @@ The records owlseed writes, and the fields each needs at least:
 
 - the current position: the unit in progress and the stage
 - a work unit: what, origin, status (waiting, in progress, checked or closed), each
-  change of status with when and why, progress so far, and each check with its result
-  and proof
+  change of status with when and why, progress so far, each check with its result
+  and proof, and what the unit taught, or that it taught nothing
 - an improvement item: what was seen, in which unit, where it belongs, how many times, whether done
 - a decision: what changed in purpose, scope or way of checking, why, in which unit
 - a gate record: the change, its proof, a reason for each of the seven conditions
@@ -130,7 +138,7 @@ instruction in the seed's text; it has no external basis beyond that, and the se
 not state the count.
 
 state also holds what a safe point is and how to get back to one, which gate condition 7
-uses, and the owlseed version, which orient compares.
+uses, and the owlseed version, which germinate compares with the seed's.
 
 ### verify -- how a result is checked
 

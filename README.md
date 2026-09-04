@@ -77,6 +77,13 @@ ln -s ~/src/owlseed/skills/owlseed ~/.claude/skills/owlseed
 read the owlseed skill and start. Before germination there is nothing in the project
 that points at owlseed. From then on the agent reaches for it on its own.
 
+Germination is a dialogue: the agent fills the three core skills one heading at a time
+and asks for agreement to each. Give the answers as they come rather than up front, so
+that what gets recorded as agreed is text you have seen. Under Codex CLI, run that first
+session interactively or with `--approve-for-me`: creating directories under
+`.agents/skills/` needs an approval, and the project's `.codex/` is mounted read-only, so
+do not put the records there.
+
 ## Licence
 
 Code (`scripts/` and the JSON manifests) is Apache-2.0; see `LICENSE`. Documentation

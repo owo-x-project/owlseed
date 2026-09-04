@@ -51,8 +51,12 @@ gate and the same list; the seed adds no special rule for it.
    case hidden, the text still holds. If not, it is a case and belongs in the record of
    decisions.
 5. **It is in the right place.** State and history go to state; structure, stack and
-   constraints go to AGENTS.md; a skill keeps only procedures. If AGENTS.md repeats a
-   rule from owlseed, propose removing it.
+   constraints go to AGENTS.md, and so do the runtime's own tools; a skill keeps only
+   procedures and names no runtime tool, so that the project can change runtime. If
+   AGENTS.md repeats a rule from owlseed, propose removing it. The runtime clause comes
+   from a trial in which a runtime's bundled skill-making tool was used during a grow, and
+   its validator was written into verify's way of checking the `skill` kind; the project
+   would have failed that check on any other runtime.
 6. **It does not touch owlseed.** It does not go against owlseed and does not change
    owlseed itself.
 7. **It can be undone.** The point before the change can be reached by the recovery

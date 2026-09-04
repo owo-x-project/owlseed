@@ -4,7 +4,7 @@ Read this when you make, take in, combine or remove a skill. Every change passes
 
 ## Making a derived skill
 
-Copy assets/derived.md and fill it in. End the description with the two words "Under owlseed". Put the relation to owlseed in the note at the top, not in the description. Keep the body short. As advice, not a rule: owlseed keeps its own SKILL.md under 1,100 words and each reference under 500. Make sure no angle brackets remain. Name the skill under Kinds of work unit in owlseed-compass. A skill that is not named there is never called.
+Copy assets/derived.md and fill it in. A runtime's own tool for making skills may shape the file, nothing more. End the description with the two words "Under owlseed". Put the relation to owlseed in the note at the top, not in the description. Keep the body short. As advice, not a rule: owlseed keeps its own SKILL.md under 1,100 words and each reference under 500. Make sure no angle brackets remain. Name the skill under Kinds of work unit in owlseed-compass. A skill that is not named there is never called.
 
 ## Taking in an outside skill
 

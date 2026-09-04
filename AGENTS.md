@@ -88,6 +88,10 @@ but `sh`, `awk` and the POSIX shell utilities: no bash-isms, no Python, no `jq`,
 network, no model calls. The checks have to run anywhere the skill might be developed,
 and they have to cost nothing.
 
+**The version is written twice, and `validate.sh` keeps them equal.** `metadata.version`
+in `SKILL.md`, the literal in its germinate stage, and the plugin manifests all carry the
+same number. Bump all of them together; the script fails otherwise.
+
 **`scripts/validate.sh` passes before a commit lands.**
 
 ```sh

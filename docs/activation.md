@@ -94,3 +94,27 @@ That makes the description carry two jobs at once: reaching owlseed at the start
 session, and reaching it mid-session when someone asks for a skill to be made or fixed.
 It is a thing to observe rather than to argue about, on the same grounds as the rest of
 this document.
+
+## What a trial on Codex CLI showed
+
+One trial, on a throwaway project driven through `codex exec`, six sessions, one model.
+Three observations bear on activation:
+
+- **Description-only activation worked without being named.** After germination, a
+  fresh session given a plain feature request, and another asked only how far the last
+  session got, both read owlseed first and resumed from state. One of them found and
+  repaired a status field the previous session had left stale.
+- **The runtime's bundled skill-maker co-activates on "make it a skill".** Unlike
+  "review", the word is not yielded: with growth folded into the seed, nothing else
+  reaches `grow.md`. The two ran together and owlseed governed the result, so
+  co-activation is acceptable; what was not acceptable was the bundled tool's validator
+  leaking into a core skill, which gate condition 5 now names.
+- **Germination needs a human who has seen the text.** Given all answers up front and
+  told to proceed, the agent filled every heading, recorded "the human agreed" for each,
+  and the human had never seen the safe-state definition it wrote. `germinate.md` now
+  records agreement only after the human answers to the filled text.
+
+Two runtime facts, not owlseed's to fix but worth knowing when trialling there: Codex
+mounts the project's `.codex/` read-only inside its sandbox, so records cannot live
+there, and creating directories under `.agents/skills/` needs an approval, so the first
+session should be interactive or run with approvals routed. The README says so.

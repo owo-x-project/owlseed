@@ -23,7 +23,7 @@ Germination happens once. After that, orient through close runs once per work un
 | **Select** | What is the next single unit? What kind is it? Does it fit? | state, compass | Go on when exactly one unit is in progress and it fits one session. With a human, take their request; alone, the first waiting unit with no unanswered question. |
 | **Act** | Which skills does this kind of unit go through? | the skills compass names, `grow.md` and `gate.md` when a skill changes | Do not modify the seed. A change of purpose, scope or way of checking is recorded as a decision. |
 | **Verify** | Is this done by compass's definition, checked by verify's means? | compass, verify | Go on when the unit is checked. Every check is recorded on the unit with its result and proof; on failure return to act, on the same failure twice split the unit. |
-| **Sediment** | Where does what was learned belong? | `SKILL.md` names the destination; `gate.md` for every skill change | Go on when every change to a skill has a gate record. |
+| **Sediment** | Where does what was learned belong? | `SKILL.md` names the destination; `gate.md` for every skill change | Go on when the unit records what it taught and every change to a skill has a gate record. |
 | **Close** | Can the next session pick this up? | state | Go on when the unit is closed and the position is recorded. |
 
 Among the findings the design cites as its grounds are four failure modes observed in
@@ -79,6 +79,40 @@ contract intact, undoable, and a record. Sending every one-line change to compas
 select, act and verify would cost a full cycle per line, and the expected result is that
 agents stop recording improvements at all. An item that needs any other change to the
 project does become a unit.
+
+## Why sediment leaves a record even when nothing was learned
+
+A trial on a small project, driven through a headless CLI, ran four units through the
+lifecycle and never entered sediment: verify went straight to close, twice with the same
+hand-built procedure that sediment exists to turn into a skill. Three things in the text
+allowed it. The guard, "every change to a skill has a gate record", is true when no skill
+changed, so the stage could be left without being entered. Every other stage leaves a
+mandatory trace in state and sediment left none, so an agent read it as optional. And
+"a procedure that repeated" assumed a count, but nothing recorded the first occurrence,
+so there was never a second.
+
+The fix is one required record and one comparison. A unit now records what it taught,
+or that it taught nothing, and the guard requires that record; one line per unit, not
+the ritual entry per skill that an earlier wording was narrowed away from. A first re-run
+after the change showed the second half of the problem: the agent read the new text, and
+its project's copy of state, germinated under the old version, had no field for it, so
+nothing was written. A version comparison at orient existed for exactly that, and the
+agent skipped it too. Four more wordings were tried, each answering the previous
+failure: the version as a literal in orient's guard made the agent notice the difference
+but write the new number without comparing; requiring the comparison as the reason of a
+decision made it run `diff` and dismiss what it saw as "descriptive wording"; a yes-or-no
+criterion, every template line without angle brackets present word for word, was skipped
+outright. Across those runs the agent never once produced the migration unit. Judging two
+texts equal is not something this text can make an agent do reliably, so the seed no
+longer asks for it: a version difference is handled by germination, which copies the
+template and carries the old answers over, and the agents followed germination closely
+every time it ran. See [versioning.md](versioning.md).
+
+The second half of the sediment fix is that the text
+names where repetition is found: a step done by hand in this unit and in a closed unit of
+the same kind. That reads the checks state already holds, so it needs no improvement item
+to have been filed the first time. The same trial showed an agent, once asked, doing
+exactly that comparison from the recorded proofs; the text now asks for it unprompted.
 
 ## What grows, and from what
 

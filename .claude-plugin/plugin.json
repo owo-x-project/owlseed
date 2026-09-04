@@ -1,7 +1,7 @@
 {
   "name": "owlseed",
   "description": "Immutable behavioural principles and a seven-stage work lifecycle (germinate, orient, select, act, verify, sediment, close) that an agent grows project-specific core and derived skills from.",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "license": "Apache-2.0",
   "author": {
     "name": "owlseed maintainers"

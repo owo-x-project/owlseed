@@ -1,13 +1,15 @@
 # Versioning
 
 The normative text is the `metadata.version` field in `skills/owlseed/SKILL.md`, the
-version comparison in its orient stage, and
+version comparison in its germinate stage, and
 `skills/owlseed/references/germinate.md`. This document records what was decided and
 why.
 
 ## Rules
 
-- owlseed carries a version, in `metadata.version`.
+- owlseed carries a version, in `metadata.version`, and states the same number as a
+  literal in the germinate stage, where the agent compares it with what state recorded.
+  `scripts/validate.sh` fails when the two differ or the plugin manifests disagree.
 - **Renaming, merging or splitting a contract happens only in a major version.**
 - On a version difference, the seed has the agent **reconstruct** the core skills from
   the existing ones. The reconstruction passes the acceptance gate.
@@ -41,11 +43,25 @@ table would otherwise have been needed for. The contracts state what the new ski
 must answer, which is what drives a split correctly without an instruction naming
 the split.
 
-One case does not surface that way, and the skill handles it explicitly. A minor
-version that only adds a heading or a fixed line leaves every core skill present, so germination
-never fires and the addition would never reach the project. So orientation
-compares the version state records against the seed's, and on a difference checks each
-core skill's headings and fixed lines against its template and queues every missing one as an improvement item.
+One case would not surface that way on its own. A minor version that only adds a
+heading or a fixed line leaves every core skill present, so nothing is missing in the
+literal sense. The seed closes the gap by definition: a core skill made under another
+owlseed version counts as missing, and the germinate guard names the current version as a
+literal. So every version difference, major or minor, goes through the same door.
+
+An earlier design handled the minor case more lightly, at orient: compare each core
+skill's headings and fixed lines with its template and make a work unit for each that
+differs. Seven trial sessions on a project germinated under the previous version never
+produced that unit, through five wordings. The agent skipped the conditional; then noticed
+the version and wrote the new number without comparing; then compared with `diff` and
+dismissed the changed fixed line as descriptive wording; then was given a yes-or-no
+criterion and skipped it again. The failing step was always the same: judging that two
+lines of text differ in a way that matters. Germination asks for no such judgement. It
+copies the template, whose fixed lines are by construction current, and fills the
+placeholders from the old skill as material, and in every trial session that reached it
+the agent followed it step by step. A minor bump therefore costs a short germination with
+a human present, which is also what the compass default now requires for any change to a
+core skill.
 That one clause replaces the whole migration procedure.
 
 ## Why reconstruction rather than a rewrite

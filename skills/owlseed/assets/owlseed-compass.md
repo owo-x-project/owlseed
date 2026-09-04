@@ -30,5 +30,5 @@ owlseed asks here at Select and Verify: what must be true for a unit of this kin
 ## Who decides
 
 owlseed asks here at Select and Act: must a human decide this? Start with a long list for the human. Making the list shorter is a change that passes the gate.
-A human decides: <Include at least: changes of scope, actions that destroy something, new readings of the purpose, and anything with effects outside the project>
+A human decides: <Include at least: changes of scope, actions that destroy something, new readings of the purpose, anything with effects outside the project, and any change to a core skill>
 The agent decides: <What the agent may decide alone>

@@ -118,6 +118,59 @@ for skill in skills/*; do
 done
 
 echo
+echo "== version"
+# The seed states its version twice: in metadata.version, and as a literal in the
+# orient stage, where the agent compares it with what state recorded. A literal
+# that drifts from the frontmatter would make every project migrate to the wrong
+# version, so the two must agree, and the plugin manifests must carry the same one.
+for skill in skills/*; do
+    [ -f "$skill/SKILL.md" ] || continue
+    fm=$(awk '
+        /^---$/ { f++; next }
+        f == 1 && /^[ \t]+version:/ { sub(/^[ \t]+version:[ \t]*/, ""); gsub(/["]/, ""); print; exit }
+    ' "$skill/SKILL.md")
+    if [ -z "$fm" ]; then
+        echo "ERROR   $skill/SKILL.md: no metadata.version in frontmatter"
+        status=1
+        continue
+    fi
+    body_versions=$(awk '
+        /^---$/ { f++; next }
+        f >= 2 {
+            line = $0
+            while (match(line, /[0-9]+\.[0-9]+\.[0-9]+/)) {
+                print substr(line, RSTART, RLENGTH)
+                line = substr(line, RSTART + RLENGTH)
+            }
+        }
+    ' "$skill/SKILL.md" | sort -u)
+    if [ -z "$body_versions" ]; then
+        echo "ERROR   $skill/SKILL.md: the body names no version; orient compares a literal"
+        status=1
+    fi
+    for v in $body_versions; do
+        if [ "$v" = "$fm" ]; then
+            echo "ok      $skill/SKILL.md: body says $v, frontmatter says $fm"
+        else
+            echo "ERROR   $skill/SKILL.md: body says $v, frontmatter says $fm"
+            status=1
+        fi
+    done
+    for manifest in .claude-plugin/marketplace.json .claude-plugin/plugin.json; do
+        [ -f "$manifest" ] || continue
+        mv=$(awk -f scripts/json.awk "$manifest" | awk -F '\t' '$1 == "version" || $1 ~ /^plugins\.[0-9]+\.version$/ { print $2 }' | sort -u)
+        for v in $mv; do
+            if [ "$v" = "$fm" ]; then
+                echo "ok      $manifest: version $v matches the seed"
+            else
+                echo "ERROR   $manifest: version $v, seed is $fm"
+                status=1
+            fi
+        done
+    done
+done
+
+echo
 echo "== plugin manifests"
 for manifest in .claude-plugin/marketplace.json .claude-plugin/plugin.json; do
     [ -f "$manifest" ] || continue
