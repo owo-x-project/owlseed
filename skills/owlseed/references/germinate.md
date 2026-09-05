@@ -1,5 +1,3 @@
-# Germinate and rebuild
-
 Do this when a core skill is missing. A core skill that was renamed, combined or split also counts as missing, and so does one made under another owlseed version. Do it only when a human is there to answer.
 
 1. Copy the matching template from assets to the place where the project keeps its skills. Do not change the name or the headings.

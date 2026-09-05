@@ -45,18 +45,18 @@ Go on when: there is a result, and owlseed-state records the progress so far.
 
 ## Verify
 
-Check the result against the definition of done in owlseed-compass, using the ways to check in owlseed-verify. If owlseed-verify has no way to check this kind, define one first, through the gate. If you can, judge the result in a context other than the one that made it.
+Check the result against the definition of done in owlseed-compass, using the ways to check in owlseed-verify. If owlseed-verify has no way to check this kind, define one first, through the gate. Separate making from judging the way owlseed-verify says.
 Record every check on the unit in owlseed-state, with its result and its proof. If it passes, set the unit to checked.
 Go on when: the unit is checked.
 If not: go back to Act. If the check fails a second time for the same reason, go back to Select and split the unit.
 
 ## Sediment
 
-Record on the unit what it taught, or that it taught nothing. Put each lesson where it belongs, and every improvement item that has come up more than once.
+Record on the unit what it taught, or that it taught nothing.
 A step done by hand here and in a closed unit of the same kind is a procedure that repeated.
 A procedure that repeated goes into a derived skill. What you learned about the purpose, the scope or the definition of done goes into owlseed-compass. What you learned about checking goes into owlseed-verify. What you learned about the project itself goes into the project's notes for agents, as a proposal to a human.
 If you skipped part of a skill, added to it or worked around it, record an improvement item for that skill, core skills included. Record also a skill never used, or two that do the same thing.
-An improvement item that has repeated is done now if it changes only a skill. If it needs any other change to the project, it becomes a work unit. Either way, only when owlseed-compass leaves the decision to the agent. Mark a done item as done. Never remove an item.
+An improvement item that has repeated is done now if it changes only a skill. If it needs any other change to the project, it becomes a work unit. Either way, only when owlseed-compass leaves the decision to the agent. Mark a done item as done.
 When an item keeps coming back and no fix works, or a check keeps failing for the same reason, look outside the project for another skill, tool or way of working, as a work unit of its own.
 Go on when: the unit records what it taught, and every change to a skill has a gate record.
 
